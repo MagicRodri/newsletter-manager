@@ -6,7 +6,7 @@ class NewsletterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Newsletter
-        fields = ['body','filter','start_at','end_at']
+        fields = ['name','body','filter','start_at','end_at']
 
 class ClientSerializer(serializers.ModelSerializer):
 
