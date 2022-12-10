@@ -1,8 +1,7 @@
-from datetime import datetime,timedelta
 
-from django.utils import timezone
+
 from django.db import models
-
+from django.db.models import Q
 from core.models import BaseModel
 from .validators import validate_phone_number
 # Create your models here.
@@ -20,6 +19,19 @@ class Newsletter(BaseModel):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_clients(self):
+        filter_set = set(self.filter.split())
+        lookups = Q(phone_number__in=filter_set) | Q(operator_code__in = filter_set) | Q(tag__in =filter_set)
+        return Client.objects.filter(lookups)
+
+    def complete_percentage(self):
+        sent = self.messages.filter(status = Message.SENT).count()
+        total = self.messages.count()
+        try:
+            return (sent/total)*100
+        except ZeroDivisionError:
+            return 0
 
 class Client(BaseModel):
 
@@ -43,8 +55,8 @@ class Message(BaseModel):
         (PENDING,'Pending'),
     )
     status = models.CharField(max_length=7, choices=STATUS_CHOICES, default=PENDING)
-    newsletter = models.ForeignKey(Newsletter, on_delete=models.CASCADE)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    newsletter = models.ForeignKey(Newsletter, on_delete=models.CASCADE, related_name='messages')
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='messages')
 
 
     def __str__(self) -> str:

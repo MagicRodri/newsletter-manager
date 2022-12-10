@@ -3,9 +3,9 @@ from .views import ClientList, ClientDetail,NewsletterList, NewsletterDetail,Mes
 
 urlpatterns = [
     path('',NewsletterList.as_view()),
-    path('<str:pk>/',NewsletterDetail.as_view()),
+    path('<int:pk>/',NewsletterDetail.as_view()),
     path('client/', ClientList.as_view() ),
-    path('client/<str:pk>/', ClientDetail.as_view()),   
+    path('client/<int:pk>/', ClientDetail.as_view()),   
     path('message/', MessageList.as_view() ),
-    path('message/<str:pk>', MessageDetail.as_view() ),
+    path('message/<int:pk>', MessageDetail.as_view() ),
 ]
