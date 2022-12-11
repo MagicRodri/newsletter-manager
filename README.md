@@ -1,13 +1,30 @@
 # newsletter-manager
 
 ### A basic newsletter api manager with Django REST framework
-## Installation
-
+## Running
 ### - Clone this repository
 ### - cd into newsletter-manager directory
 ```bash
 cd newsletter-manager/
 ```
+- ## With docker
+### - Create .env and provide token for external api
+```bash
+(venv) touch .env
+```
+### .env sample
+```
+SECRET_KEY = mysecret
+DEBUG = 1
+ALLOWED_HOSTS=localhost
+TOKEN=my_token
+```
+### Build and spin docker containers
+```bash
+(venv) docker-compose up --build
+```
+
+- ## Without docker
 ### - Create virtual environment and install dependencies
 ```bash
 python -m venv venv
@@ -48,6 +65,6 @@ Windows10+ : At the moment of writing this prefork(--pool=processes by default) 
 ### Demo version available on [newsletter-manager](https://).
 
 ## Next steps :
-- [ ] Dockerize
+- [x] Dockerize
 - [ ] Testing
 - [ ] Improve clients filtering

@@ -1,13 +1,15 @@
 from __future__ import absolute_import, unicode_literals
 
 import os
-from .settings import BASE_DIR
-from celery import Celery
-import dotenv
 
+import dotenv
+from celery import Celery
+
+from .settings import BASE_DIR
 
 env_path = BASE_DIR / '.env'
-dotenv.read_dotenv(env_path)
+if env_path.exists():
+    dotenv.read_dotenv(env_path)
 
 # set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')

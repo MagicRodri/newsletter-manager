@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/newsletter-manager
+    ports:
+      - 8000:8000
+    depends_on:
+      - redis
+
+  redis:
+    image: 'redis:alpine'
+    hostname: redis
+
+  celery:
+      build:
+        context: .
+      command: "celery -A config worker -l INFO"
+      depends_on:
+        - web
+        - redis
+      environment:
+      - "CELERY_BROKER_URL=redis://redis:6379"
+      - "CELERY_RESULT_BACKEND=redis://redis:6379"
+      restart: on-failure
