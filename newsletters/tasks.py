@@ -12,7 +12,7 @@ TOKEN = os.environ.get('TOKEN')
 def send_message(self,newsletter_pk,client_pk):
     """
         Create and send message to client with newsletter body attribute
-        Retry sending on any exception, 5 times with variable interval of time before given up
+        Retry sending on any exception, 5 times with variable interval of time before giving up
     """
 
     endpoint = 'https://probe.fbrq.cloud/v1/send/{id}'

@@ -10,7 +10,7 @@ cd newsletter-manager/
 - ## With docker
 ### - Create .env and provide token for external api
 ```bash
-(venv) touch .env
+touch .env
 ```
 ### .env sample
 ```
@@ -21,7 +21,7 @@ TOKEN=my_token
 ```
 ### Build and spin docker containers
 ```bash
-(venv) docker-compose up --build
+docker-compose up --build
 ```
 
 - ## Without docker
@@ -68,3 +68,4 @@ Windows10+ : At the moment of writing this prefork(--pool=processes by default) 
 - [x] Dockerize
 - [ ] Testing
 - [ ] Improve clients filtering
+- [ ] Api docs
