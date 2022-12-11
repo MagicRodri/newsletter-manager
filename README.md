@@ -69,3 +69,4 @@ Windows10+ : At the moment of writing this prefork(--pool=processes by default) 
 - [ ] Testing
 - [ ] Improve clients filtering
 - [x] Api docs
+- [ ] Deal with timezone
