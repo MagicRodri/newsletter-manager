@@ -47,6 +47,6 @@ def distribute_newsletter(newsletter_pk):
         Grab matched clients to the given newsletter and broadcast the message to them
     """
     newsletter = Newsletter.objects.get(pk = newsletter_pk)
-    clients = newsletter.get_clients()
+    clients = newsletter.matched_clients()
     for client in clients:
         succeeded = send_message.apply_async((newsletter_pk,client.pk))

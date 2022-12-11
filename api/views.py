@@ -3,7 +3,12 @@ from django.shortcuts import render
 from rest_framework import generics
 
 from newsletters.models import Client, Newsletter, Message
-from newsletters.serializers import ClientSerializer,NewsletterSerializer,MessageSerializer
+from newsletters.serializers import (
+    ClientSerializer,
+    NewsletterSerializer,
+    MessageSerializer,
+    NewsletterFullSerializer
+)
 # Create your views here.
 
 
@@ -15,7 +20,7 @@ class NewsletterList(generics.ListCreateAPIView):
 class NewsletterDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Newsletter.objects.all()
-    serializer_class = NewsletterSerializer
+    serializer_class = NewsletterFullSerializer
 
 class ClientList(generics.ListCreateAPIView):
     
@@ -28,12 +33,12 @@ class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ClientSerializer
 
 
-class MessageList(generics.ListCreateAPIView):
+class MessageList(generics.ListAPIView):
 
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
 
-class MessageDetail(generics.RetrieveUpdateDestroyAPIView):
+class MessageDetail(generics.RetrieveDestroyAPIView):
 
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
