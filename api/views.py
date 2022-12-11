@@ -38,7 +38,7 @@ class MessageList(generics.ListAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
 
-class MessageDetail(generics.RetrieveDestroyAPIView):
+class MessageDetail(generics.RetrieveAPIView):
 
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
