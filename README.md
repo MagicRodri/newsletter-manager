@@ -68,4 +68,4 @@ Windows10+ : At the moment of writing this prefork(--pool=processes by default) 
 - [x] Dockerize
 - [ ] Testing
 - [ ] Improve clients filtering
-- [ ] Api docs
+- [x] Api docs
